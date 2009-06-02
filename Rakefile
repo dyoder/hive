@@ -5,7 +5,7 @@ rescue LoadError => e
   raise e
 end
 
-runtime_deps = { 'faces/duration' => '~> 1.0' }
+runtime_deps = { 'facets/duration' => '~> 1.0' }
 
 gem = Gem::Specification.new do |gem|
   gem.name = "hive"

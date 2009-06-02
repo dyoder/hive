@@ -15,6 +15,8 @@ module Hive
       logger.info "All threads are finished."
     end
     
+    private 
+    
     def schedule( method, options )
       raise ArgumentError.new( "Invalid schedule for task #{method}.") unless valid?(options)
       logger.info "Scheduling task #{method} ..."

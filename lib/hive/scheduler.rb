@@ -29,7 +29,11 @@ module Hive
             if self.respond_to?( method )
               Thread.new do
                 logger.info "Running task #{method} ..."
-                self.send( method ) 
+                begin
+                  self.send( method ) 
+                rescue Exception => e 
+                  logger.error e
+                end
                 logger.info "Task #{method} complete."
               end
             else

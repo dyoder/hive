@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'logger'
-require 'lib/worker'
-require 'lib/scheduler'
+require 'lib/hive/worker'
+require 'lib/hive/scheduler'
 
 class MyScheduler < Hive::Scheduler
   

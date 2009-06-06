@@ -16,7 +16,7 @@ gem = Gem::Specification.new do |gem|
   gem.author = 'Dan Yoder'
   gem.email = 'dan@zeraweb.com'
   gem.platform = Gem::Platform::RUBY
-  gem.required_ruby_version = '>= 1.8.7'
+  gem.required_ruby_version = '>= 1.8.6'
   runtime_deps.each { | name, version | gem.add_runtime_dependency( name.to_s, version ) }
   gem.files = FileList[ 'lib/**/*.rb' ]
   gem.has_rdoc = true

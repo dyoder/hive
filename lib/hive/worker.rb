@@ -40,7 +40,7 @@ module Hive
         start_debugger if options[:debug] # unless Kernel.engine == 'jruby'
         # various ways to talk to a worker
         set_traps ; start_console ; start_drb
-        start_tasks.join
+      start_tasks.join
       rescue Exception => e
         logger.error e.to_s
       end

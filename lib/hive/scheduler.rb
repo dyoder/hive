@@ -8,7 +8,7 @@ module Hive
     def stop_tasks
       threads = Thread.list.select { |t| t.alive? && t != Thread.current }
       until threads.empty?
-        logger.info "#{threads.count} threads still running ... "
+        logger.info "#{threads.size} threads still running ... "
         threads.each { |t| t.kill && t != Thread.current }
         threads = threads.select { |t| t.alive? }
       end

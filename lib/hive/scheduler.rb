@@ -24,7 +24,8 @@ module Hive
         t = Time.now
         loop do
           t += 60
-          sleep( ( options[:interval] || ( t - Time.now ) ).to_i )
+          # the rescue handles the unusual case where t - Time.now is negative
+          sleep( ( options[:interval] || ( t - Time.now ) ).to_i ) rescue nil
           if match( t, options )
             if self.respond_to?( method )
               Thread.new do

@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'facets/duration' unless 1.respond_to? :minute
 
+require 'hive/worker'
+
 module Hive
   
   class Scheduler < Hive::Worker

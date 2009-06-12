@@ -56,6 +56,17 @@ module Hive
         
     def daemonize
       pwd = Dir.pwd ; pid = fork ; return pid if pid ; Dir.chdir( pwd )
+      # Make sure all file descriptors are closed
+      ObjectSpace.each_object(IO) do |io|
+        unless [STDIN, STDOUT, STDERR].include?(io)
+          begin
+            unless io.closed?
+              io.close
+            end
+          rescue ::Exception
+          end
+        end
+      end
       File.umask 0000 ; STDIN.reopen( '/dev/null') ; 
       STDOUT.reopen( '/dev/null', 'a' ) ; STDERR.reopen( STDOUT )
       nil # return nil for child process, just like fork does

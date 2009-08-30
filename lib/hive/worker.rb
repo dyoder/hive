@@ -36,13 +36,13 @@ module Hive
       return pid if pid
       begin
         # from here on in, we're in the daemon
-        start_logger ; logger.info "#{self.class} starting ..."
+        start_logger ; logger.info "#{self.class} starting ..." 
         start_debugger if options[:debug] # unless Kernel.engine == 'jruby'
         # various ways to talk to a worker
         set_traps ; start_console ; start_drb
-      start_tasks.join
+        start_tasks.join
       rescue Exception => e
-        logger.error e.to_s
+        logger.error e.to_s rescue nil
       end
     end
     
@@ -57,8 +57,8 @@ module Hive
     def daemonize
       pwd = Dir.pwd ; pid = fork ; return pid if pid ; Dir.chdir( pwd )
       # Make sure all file descriptors are closed
-      ObjectSpace.each_object(IO) do |io|
-        unless [STDIN, STDOUT, STDERR].include?(io)
+      ObjectSpace.each_object( IO ) do | io |
+        unless [ STDIN, STDOUT, STDERR ].include?(io)
           begin
             unless io.closed?
               io.close
